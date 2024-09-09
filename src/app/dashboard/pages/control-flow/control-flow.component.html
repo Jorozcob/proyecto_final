@@ -1,0 +1,50 @@
+
+<app-title title="Control Flow"/>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+  <div class="bg-white rouded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">if: {{ showContent() }}</h2>
+    <button
+      class="p-2 bg-blue-500 rounded text-white hover:bg-blue-400"
+      (click)="toggleContent()"
+    >
+      Click me!
+    </button>
+    @if (showContent()) {
+    <p>Hello World!</p>
+    }@else {
+    <p>*3*</p>
+    }
+  </div>
+  <!--switch-->
+  
+  <div class="bg-white rouded shadow p-10">
+      @switch (grade()) { @case ('A') {
+          <p>Arriba de 90</p>
+        } @case ('B') {
+            
+            <p>Arriba de 80</p>
+        } @default {
+            
+            <p>Reprobado</p>
+        } }
+    </div>
+
+    <div class="bg-white rouded shadow p-10">
+        <ul>
+      @for (item of framwworks(); track $index) {
+        <li>{{item}}</li>
+      }
+      </ul>
+    </div>
+     <div class="bg-white rouded shadow p-10">
+        <ul>
+      @for (item of framwworks2(); track $index) {
+        <li>{{item}}</li>
+      }@empty {
+        <li>No hay data para mostrar</li>
+      }
+      </ul>
+    </div>
+</section>
+

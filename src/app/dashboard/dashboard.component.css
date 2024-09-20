@@ -1,0 +1,90 @@
+/* Contenedor principal con dos columnas */
+.main-container {
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    margin: 0; /* Elimina cualquier margen */
+    padding: 0; /* Elimina cualquier padding */
+    background: linear-gradient(135deg, #ececec, #ffffff); /* Fondo con degradado */
+  }
+  
+  /* Estilo de la barra lateral */
+  .sidebar {
+    width: 200px; /* Ancho fijo para la barra lateral */
+    height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+    background-color: #3f51b5; /* Fondo azul oscuro */
+    color: white; /* Texto blanco */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0; /* Espaciado interno vertical */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    position: fixed; /* Fija la barra lateral al lado izquierdo */
+    top: 0;
+    left: 0;
+  }
+  
+  /* Estilo de la lista en la barra lateral */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .sidebar li {
+    width: 100%;
+    font-size: 1.2em;
+  }
+  
+  /* Estilo del mat-expansion-panel */
+  mat-expansion-panel {
+    background-color: transparent !important; /* Fondo transparente */
+    color: white; /* Texto blanco */
+    box-shadow: none; /* Sin sombra */
+  }
+  
+  /* Estilo del header del mat-expansion-panel */
+  mat-expansion-panel-header {
+    background-color: #3f51b5 !important; /* Mismo color de la barra lateral */
+    color: white; /* Texto blanco */
+   
+  }
+
+  mat-panel-title {
+    font-size: 1.2em;
+    color: white;
+  }
+  
+  /* Estilo del contenido del mat-expansion-panel */
+  .mat-expansion-panel-body {
+    background-color: #3f51b5; /* Mismo color que la barra lateral */
+    padding-left: 20px; /* Espaciado para las opciones */
+  }
+  
+  /* Estilo de los botones del submenú */
+  .submenu li button {
+    width: 100%;
+    text-align: left;
+    color: white; /* Texto blanco */
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+  }
+  
+  /* Efecto hover para los botones del submenú */
+  .submenu li button:hover {
+    background-color: #283593; /* Azul más oscuro en hover */
+    border-radius: 5px; /* Bordes redondeados */
+    color: white; /* Texto blanco */
+  }
+  
+  /* Contenedor del dashboard */
+  .dashboard-container {
+    margin-left: 200px; /* Deja espacio para la barra lateral */
+    flex-grow: 1; /* Ocupa el espacio restante */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    padding: 20px;
+  }
+  
+ 

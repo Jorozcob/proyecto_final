@@ -1,3 +1,6 @@
-<div class="app-container">
-  <app-dashboard></app-dashboard> <!-- Llama al componente standalone -->
+<div class="layout-container">
+  <app-dashboard class="sidebar"></app-dashboard> <!-- Dashboard siempre visible -->
+  <div class="content">
+    <router-outlet></router-outlet> <!-- Aquí se cargan las rutas hijas -->
+  </div>
 </div>

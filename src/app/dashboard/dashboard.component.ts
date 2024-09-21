@@ -1,25 +1,24 @@
 import { Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion'; // Importa MatExpansionModule
 import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion'; // Importa los módulos necesarios
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatExpansionModule, // Importa el módulo de expansión
-    CommonModule
-  ],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss'],
+  imports: [CommonModule, MatExpansionModule, RouterModule] // Importa módulos necesarios
 })
 export class DashboardComponent {
+  // Lógica del dashboard aquí (menú, enlaces, etc.)
+
+
+
   title = 'Dashboard de Inicio';
+
+  constructor(private router: Router) {} // Inyecta el servicio Router
+
 
   // Métodos para Médicos
   agregarMedico() {
@@ -40,12 +39,15 @@ export class DashboardComponent {
   // Métodos para Pacientes
   agregarPaciente() {
     console.log('Agregar Paciente');
+    this.router.navigate(['/registrar-paciente']);
+
     // Lógica para agregar paciente
   }
 
   editarPaciente() {
     console.log('Editar Paciente');
     // Lógica para editar paciente
+    this.router.navigate(['/dashboard']);
   }
 
   borrarPaciente() {

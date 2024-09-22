@@ -1,6 +1,27 @@
 <div class="main-container">
     <div class="sidebar">
       <ul>
+        <!-- Sección admin -->
+        <li>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Admin
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="submenu">
+              <li>
+                <button mat-button (click)="agregarAdmin()">Agregar Admin</button>
+              </li>
+              <li>
+                <button mat-button (click)="editarMedico()">Editar Admin</button>
+              </li>
+              <li>
+                <button mat-button (click)="borrarMedico()">Borrar Admin</button>
+              </li>
+            </ul>
+          </mat-expansion-panel>
+        </li>
         <!-- Sección Médicos -->
         <li>
           <mat-expansion-panel>

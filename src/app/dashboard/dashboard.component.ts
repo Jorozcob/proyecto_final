@@ -19,11 +19,18 @@ export class DashboardComponent {
 
   constructor(private router: Router) {} // Inyecta el servicio Router
 
+  agregarAdmin() {
+    console.log('Agregar admin');
+    // Lógica para agregar médico
+    this.router.navigate(['/registrar-admin']);
+  }
+
 
   // Métodos para Médicos
   agregarMedico() {
     console.log('Agregar Médico');
     // Lógica para agregar médico
+    this.router.navigate(['/registrar-doctor']);
   }
 
   editarMedico() {

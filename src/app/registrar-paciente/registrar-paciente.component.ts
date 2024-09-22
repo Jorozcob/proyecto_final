@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-registrar-paciente',
@@ -14,8 +15,10 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
+  providers:[PacienteService],
   templateUrl: './registrar-paciente.component.html',
   styleUrl: './registrar-paciente.component.css'
 })
@@ -45,5 +48,5 @@ patientForm: FormGroup;
         }
       });
     }
-  }
+  } 
 }

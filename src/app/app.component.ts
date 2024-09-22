@@ -37,6 +37,7 @@ import { DashboardComponent } from './dashboard/dashboard.component'; // Importa
     CommonModule,
     RouterModule,
     DashboardComponent // Importa el DashboardComponent
+    
   ]
 })
 export class AppComponent {}

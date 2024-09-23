@@ -1,7 +1,6 @@
 import { provideRouter, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-principal.component';
-import { RegistrarPacienteComponent } from './registrar-paciente/registrar-paciente.component';
 import { ViewAdminComponent } from './pages/admin/view-admin/view-admin.component';
 
 export const routes: Routes = [

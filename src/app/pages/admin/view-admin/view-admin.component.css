@@ -1,0 +1,54 @@
+.admin-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .add-button {
+    margin-bottom: 20px;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .full-width-table {
+    width: 100%;
+    min-width: 600px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .mat-column-adm_id,
+    .mat-column-adm_rol_id {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+    .mat-column-adm_telefono,
+    .mat-column-adm_email {
+      display: none;
+    }
+  }
+  
+  /* Estilos para el diálogo */
+  .mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos para los snackbars */
+  .error-snackbar {
+    background: #f44336;
+    color: white;
+  }
+  
+  .success-snackbar {
+    background: #4caf50;
+    color: white;
+  }

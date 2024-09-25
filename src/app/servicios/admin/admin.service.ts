@@ -10,7 +10,8 @@ import { Admin } from '../../interfaces/admin';
   providedIn: 'root'
 })
 export class AdminService {
-  private apiUrl = 'https://gestorhospital.jpavancestecnologicos.com/api/administracion';
+  private apiUrl = 'https://aat1.clinica.jpavancestecnologicos.com/api/admin';
+  //private apiUrl = 'https://gestorhospital.jpavancestecnologicos.com/api/administracion';
 
   constructor(private http: HttpClient) { }
 
@@ -52,7 +53,7 @@ export class AdminService {
   }
 
   updateAdmin(admin: Admin): Observable<Admin> {
-    return this.http.put<Admin>(`${this.apiUrl}/${admin.adm_id}`, JSON.stringify(admin), this.httpOptions)
+    return this.http.put<Admin>(`${this.apiUrl}/${admin.id}`, JSON.stringify(admin), this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );

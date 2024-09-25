@@ -11,7 +11,6 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { PacienteService } from '../../../servicios/pacientes/paciente.service';
 import { MatSelectModule } from '@angular/material/select';
 
-// Definición de la interfaz Paciente
 export interface Paciente {
   pac_id?: number;
   pac_nombre: string;
@@ -169,6 +168,8 @@ export class PacienteComponent implements OnInit {
     });
   }
 }
+
+// PacienteDialogComponent remains the same
 
 @Component({
   selector: 'app-paciente-dialog',

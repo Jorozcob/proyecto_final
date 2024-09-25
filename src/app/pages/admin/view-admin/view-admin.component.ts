@@ -30,7 +30,7 @@ import { Admin } from '../../../interfaces/admin';
 })
 export class ViewAdminComponent implements OnInit {
   admins: Admin[] = [];
-  displayedColumns: string[] = ['adm_id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'adm_rol_id', 'actions'];
+  displayedColumns: string[] = ['id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'adm_rol_id', 'actions'];
 
   constructor(
     private adminService: AdminService,
@@ -64,7 +64,7 @@ export class ViewAdminComponent implements OnInit {
     } else if (width < 600) {
       this.displayedColumns = ['adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'actions'];
     } else {
-      this.displayedColumns = ['adm_id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'adm_rol_id', 'actions'];
+      this.displayedColumns = ['id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'usuario_id', 'actions'];
     }
   }
 
@@ -77,7 +77,7 @@ export class ViewAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (this.isValidAdmin(result)) {
-          if (result.adm_id) {
+          if (result.id) {
             this.updateAdmin(result);
           } else {
             this.createAdmin(result);
@@ -91,43 +91,44 @@ export class ViewAdminComponent implements OnInit {
 
   isValidAdmin(admin: Admin): boolean {
     return !!(admin.adm_nombre && admin.adm_apellido && admin.adm_cargo &&
-              admin.adm_telefono && admin.adm_email && admin.adm_rol_id);
+              admin.adm_telefono && admin.adm_email && admin.usuario_id);
   }
 
-  createAdmin(admin: Admin) {
-    this.adminService.createAdmin(admin).subscribe({
-      next: (createdAdmin) => {
-        this.admins.push(createdAdmin);
-        this.showSuccess('Administrador creado exitosamente');
-      },
-      error: (error) => {
-        console.error('Error creating admin:', error);
-        this.showError('Error al crear el administrador');
-      }
-    });
-  }
+createAdmin(admin: Admin) {
+  this.adminService.createAdmin(admin).subscribe({
+    next: (createdAdmin) => {
+      this.admins.push(createdAdmin);
+      this.showSuccess('Administrador creado exitosamente');
+    },
+    error: (error) => {
+      console.error('Error creating admin:', error);
+      this.showError('Error al crear el administrador');
+    }
+  });
+}
 
-  updateAdmin(admin: Admin) {
-    this.adminService.updateAdmin(admin).subscribe({
-      next: (updatedAdmin) => {
-        const index = this.admins.findIndex(a => a.adm_id === updatedAdmin.adm_id);
-        if (index !== -1) {
-          this.admins[index] = updatedAdmin;
-        }
-        this.showSuccess('Administrador actualizado exitosamente');
-      },
-      error: (error) => {
-        console.error('Error updating admin:', error);
-        this.showError('Error al actualizar el administrador');
+updateAdmin(admin: Admin) {
+  this.adminService.updateAdmin(admin).subscribe({
+    next: (updatedAdmin) => {
+      const index = this.admins.findIndex(a => a.id === updatedAdmin.id);
+      if (index !== -1) {
+        this.admins[index] = updatedAdmin;
       }
-    });
-  }
+      this.showSuccess('Administrador actualizado exitosamente');
+    },
+    error: (error) => {
+      console.error('Error updating admin:', error);
+      this.showError('Error al actualizar el administrador');
+    }
+  });
+}
+
 
   deleteAdmin(id: number) {
     if (confirm('¿Estás seguro de que quieres eliminar este administrador?')) {
       this.adminService.deleteAdmin(id).subscribe({
         next: () => {
-          this.admins = this.admins.filter(admin => admin.adm_id !== id);
+          this.admins = this.admins.filter(admin => admin.id !== id);
           this.showSuccess('Administrador eliminado exitosamente');
         },
         error: (error) => {
@@ -156,7 +157,7 @@ export class ViewAdminComponent implements OnInit {
 @Component({
   selector: 'app-admin-dialog',
   template: `
-    <h1 mat-dialog-title>{{data.adm_id ? 'Editar' : 'Crear'}} Administrador</h1>
+    <h1 mat-dialog-title>{{data.id ? 'Editar' : 'Crear'}} Administrador</h1>
     <div mat-dialog-content>
       <div class="form-row">
         <mat-form-field appearance="fill">
@@ -184,7 +185,7 @@ export class ViewAdminComponent implements OnInit {
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>ID del Rol</mat-label>
-        <input matInput [(ngModel)]="data.adm_rol_id" type="number" required>
+        <input matInput [(ngModel)]="data.usuario_id" type="number" required>
       </mat-form-field>
     </div>
     <div mat-dialog-actions>

@@ -4,6 +4,7 @@ import { PantallaPrincipalComponent } from './pantalla-principal/pantalla-princi
 import { ViewAdminComponent } from './pages/admin/view-admin/view-admin.component';
 import { DoctoresComponent } from './pages/doctor/doctores/doctores.component';
 import { PacienteComponent } from './pages/pacientes/paciente/paciente.component';
+import { UsuarioComponent } from './pages/usuarios/usuario/usuario.component';
 
 const routes: Routes = [
  {
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path: 'dashboard', component: PantallaPrincipalComponent }, // Ruta para el dashboard
       { path: 'registrar-paciente', component: PacienteComponent}, // Ruta para registrar paciente
       { path: 'registrar-doctor', component: DoctoresComponent}, // Ruta para registrar paciente
-      { path: 'registrar-admin', component: ViewAdminComponent} // Ruta para registrar paciente
+      { path: 'registrar-admin', component: ViewAdminComponent}, // Ruta para registrar paciente
+      { path: 'registrar-usuario', component: UsuarioComponent} // Ruta para registrar paciente
     ]
   },
   { path: '**', redirectTo: 'dashboard' } // Cualquier otra ruta redirige a 'dashboard'

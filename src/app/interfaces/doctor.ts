@@ -1,10 +1,11 @@
 export interface Doctor {
-    id: number;
-    nombre: string;
-    apellido: string;
-    telefono: string;
-    email: string;
-    estado: string;
-    usuario_id: number;
-    especialidad: string[];
-  }
+  id: number;
+  med_nombre: string;
+  med_apellido: string;
+  med_telefono: string;
+  med_email: string;
+  med_estado: string;
+  usuario_id: number;
+  created_at: string;
+  updated_at: string;
+}

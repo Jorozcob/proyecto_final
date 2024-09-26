@@ -50,7 +50,13 @@ export class DashboardComponent {
 
     // Lógica para agregar paciente
   }
+  // Métodos para Pacientes
+  agregarUsuario() {
+    console.log('Agregar Paciente');
+    this.router.navigate(['/registrar-usuario']);
 
+    // Lógica para agregar paciente
+  }
   editarPaciente() {
     console.log('Editar Paciente');
     // Lógica para editar paciente

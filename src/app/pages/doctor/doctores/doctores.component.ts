@@ -31,7 +31,9 @@ import { DoctorService } from '../../../servicios/doctor/doctor.service';
 })
 export class DoctoresComponent implements OnInit {
   doctors: Doctor[] = [];
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'telefono', 'email', 'estado', 'usuario_id', 'especialidad', 'actions'];
+  displayedColumns: string[] = ['id', 'med_nombre', 'med_apellido', 'med_telefono', 'med_email', 'med_estado', 'usuario_id', 'actions'];
+//displayedColumns: string[] = ['id', 'nombre', 'apellido', 'telefono', 'email', 'estado', 'usuario_id', 'especialidad', 'actions'];
+
 
   constructor(
     private doctorService: DoctorService,
@@ -77,8 +79,8 @@ export class DoctoresComponent implements OnInit {
   }
 
   isValidDoctor(doctor: Doctor): boolean {
-    return !!(doctor.nombre && doctor.apellido && doctor.telefono &&
-              doctor.email && doctor.estado && doctor.usuario_id);
+    return !!(doctor.med_nombre && doctor.med_apellido && doctor.med_telefono &&
+              doctor.med_email && doctor.med_estado && doctor.usuario_id);
   }
 
   createDoctor(doctor: Doctor) {
@@ -148,37 +150,37 @@ export class DoctoresComponent implements OnInit {
       <div class="form-row">
         <mat-form-field appearance="fill">
           <mat-label>Nombre</mat-label>
-          <input matInput [(ngModel)]="data.nombre" required>
+          <input matInput [(ngModel)]="data.med_nombre" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Apellido</mat-label>
-          <input matInput [(ngModel)]="data.apellido" required>
+          <input matInput [(ngModel)]="data.med_apellido" required>
         </mat-form-field>
       </div>
       <div class="form-row">
         <mat-form-field appearance="fill">
           <mat-label>Teléfono</mat-label>
-          <input matInput [(ngModel)]="data.telefono" required>
+          <input matInput [(ngModel)]="data.med_telefono" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput [(ngModel)]="data.email" type="email" required>
+          <input matInput [(ngModel)]="data.med_email" type="email" required>
         </mat-form-field>
       </div>
       <div class="form-row">
         <mat-form-field appearance="fill">
           <mat-label>Estado</mat-label>
-          <input matInput [(ngModel)]="data.estado" required>
+          <input matInput [(ngModel)]="data.med_estado" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>ID del Usuario</mat-label>
           <input matInput [(ngModel)]="data.usuario_id" type="number" required>
         </mat-form-field>
       </div>
-      <mat-form-field appearance="fill" class="full-width">
+<!--       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Especialidad</mat-label>
-        <input matInput [(ngModel)]="data.especialidad" required>
-      </mat-form-field>
+        <input matInput [(ngModel)]="data.med_especialidad" required>
+      </mat-form-field> -->
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancelar</button>

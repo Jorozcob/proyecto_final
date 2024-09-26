@@ -43,7 +43,27 @@
             </ul>
           </mat-expansion-panel>
         </li>
-  
+   <!-- Sección Usuario -->
+        <li>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Usuarios
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ul class="submenu">
+              <li>
+                <button mat-button (click)="agregarUsuario()">Agregar Usuarios</button>
+              </li>
+              <li>
+                <button mat-button (click)="editarPaciente()">Editar Paciente</button>
+              </li>
+              <li>
+                <button mat-button (click)="borrarPaciente()">Borrar Paciente</button>
+              </li>
+            </ul>
+          </mat-expansion-panel>
+        </li> 
         <!-- Sección Paciente -->
         <li>
           <mat-expansion-panel>

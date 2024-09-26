@@ -1,8 +1,9 @@
+
+// doctor.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Doctor } from '../../interfaces/doctor';
-
 
 @Injectable({
   providedIn: 'root'

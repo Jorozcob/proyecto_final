@@ -1,3 +1,5 @@
+
+// doctores.component.ts
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,11 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Doctor } from '../../../interfaces/doctor';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { DoctorService } from '../../../servicios/doctor/doctor.service';
-
-
+import { Doctor } from '../../../interfaces/doctor';
 
 @Component({
   selector: 'app-doctores',
@@ -24,7 +24,8 @@ import { DoctorService } from '../../../servicios/doctor/doctor.service';
     MatInputModule,
     MatFormFieldModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   templateUrl: './doctores.component.html',
   styleUrl: './doctores.component.css'
@@ -32,8 +33,6 @@ import { DoctorService } from '../../../servicios/doctor/doctor.service';
 export class DoctoresComponent implements OnInit {
   doctors: Doctor[] = [];
   displayedColumns: string[] = ['id', 'med_nombre', 'med_apellido', 'med_telefono', 'med_email', 'med_estado', 'usuario_id', 'actions'];
-//displayedColumns: string[] = ['id', 'nombre', 'apellido', 'telefono', 'email', 'estado', 'usuario_id', 'especialidad', 'actions'];
-
 
   constructor(
     private doctorService: DoctorService,
@@ -60,7 +59,7 @@ export class DoctoresComponent implements OnInit {
   openDialog(doctor?: Doctor) {
     const dialogRef = this.dialog.open(DoctorDialogComponent, {
       width: '800px',
-      data: doctor || {}
+      data: doctor ? {...doctor} : {} as Doctor
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -177,10 +176,6 @@ export class DoctoresComponent implements OnInit {
           <input matInput [(ngModel)]="data.usuario_id" type="number" required>
         </mat-form-field>
       </div>
-<!--       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Especialidad</mat-label>
-        <input matInput [(ngModel)]="data.med_especialidad" required>
-      </mat-form-field> -->
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancelar</button>

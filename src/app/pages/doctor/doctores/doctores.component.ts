@@ -1,6 +1,6 @@
 
 // doctores.component.ts
-import { Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -37,7 +37,8 @@ export class DoctoresComponent implements OnInit {
   constructor(
     private doctorService: DoctorService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef // Inyecta el ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -48,6 +49,7 @@ export class DoctoresComponent implements OnInit {
     this.doctorService.getDoctors().subscribe({
       next: (data) => {
         this.doctors = data;
+        this.cdr.detectChanges(); // Forzar la detección de cambios
       },
       error: (error) => {
         console.error('Error fetching doctors:', error);
@@ -87,29 +89,31 @@ export class DoctoresComponent implements OnInit {
       next: (createdDoctor) => {
         this.doctors.push(createdDoctor);
         this.showSuccess('Médico creado exitosamente');
+        this.cdr.detectChanges();  // Forzar la detección de cambios
       },
       error: (error) => {
-        console.error('Error creating doctor:', error);
+        console.error('Error creando médico:', error);
         this.showError('Error al crear el médico');
       }
     });
   }
-
+ 
   updateDoctor(doctor: Doctor) {
-    this.doctorService.updateDoctor(doctor).subscribe({
-      next: (updatedDoctor) => {
-        const index = this.doctors.findIndex(d => d.id === updatedDoctor.id);
-        if (index !== -1) {
-          this.doctors[index] = updatedDoctor;
-        }
-        this.showSuccess('Médico actualizado exitosamente');
-      },
-      error: (error) => {
-        console.error('Error updating doctor:', error);
-        this.showError('Error al actualizar el médico');
+  this.doctorService.updateDoctor(doctor).subscribe({
+    next: (updatedDoctor) => {
+      const index = this.doctors.findIndex(d => d.id === updatedDoctor.id);
+      if (index !== -1) {
+        this.doctors[index] = updatedDoctor;
       }
-    });
-  }
+      this.doctors = [...this.doctors];  // Crea una nueva copia del array
+      this.showSuccess('Médico actualizado exitosamente');
+    },
+    error: (error) => {
+      console.error('Error actualizando médico:', error);
+      this.showError('Error al actualizar el médico');
+    }
+  });
+}
 
   deleteDoctor(id: number) {
     if (confirm('¿Estás seguro de que quieres eliminar este médico?')) {

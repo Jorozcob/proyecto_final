@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {  AdminService } from '../../../servicios/admin/admin.service';
 import { Admin } from '../../../interfaces/admin';
+import { MatOption, MatSelect } from '@angular/material/select';
 
 
 @Component({
@@ -30,7 +31,7 @@ import { Admin } from '../../../interfaces/admin';
 })
 export class ViewAdminComponent implements OnInit {
   admins: Admin[] = [];
-  displayedColumns: string[] = ['id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'adm_rol_id', 'actions'];
+  displayedColumns: string[] = ['adm_id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'Estado','adm_rol_id', 'actions'];
 
   constructor(
     private adminService: AdminService,
@@ -46,6 +47,7 @@ export class ViewAdminComponent implements OnInit {
     this.adminService.getAdmins().subscribe({
       next: (data) => {
         this.admins = data;
+        console.log(data);
       },
       error: (error) => {
         console.error('Error fetching admins:', error);
@@ -64,7 +66,7 @@ export class ViewAdminComponent implements OnInit {
     } else if (width < 600) {
       this.displayedColumns = ['adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'actions'];
     } else {
-      this.displayedColumns = ['id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'usuario_id', 'actions'];
+      this.displayedColumns = ['adm_id', 'adm_nombre', 'adm_apellido', 'adm_cargo', 'adm_telefono', 'adm_email', 'adm_rol_id', 'actions'];
     }
   }
 
@@ -77,7 +79,7 @@ export class ViewAdminComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         if (this.isValidAdmin(result)) {
-          if (result.id) {
+          if (result.adm_id) {
             this.updateAdmin(result);
           } else {
             this.createAdmin(result);
@@ -91,7 +93,7 @@ export class ViewAdminComponent implements OnInit {
 
   isValidAdmin(admin: Admin): boolean {
     return !!(admin.adm_nombre && admin.adm_apellido && admin.adm_cargo &&
-              admin.adm_telefono && admin.adm_email && admin.usuario_id);
+              admin.adm_telefono && admin.adm_email && admin.adm_rol_id);
   }
 
 createAdmin(admin: Admin) {
@@ -110,7 +112,7 @@ createAdmin(admin: Admin) {
 updateAdmin(admin: Admin) {
   this.adminService.updateAdmin(admin).subscribe({
     next: (updatedAdmin) => {
-      const index = this.admins.findIndex(a => a.id === updatedAdmin.id);
+      const index = this.admins.findIndex(a => a.adm_id === updatedAdmin.adm_id);
       if (index !== -1) {
         this.admins[index] = updatedAdmin;
       }
@@ -128,7 +130,7 @@ updateAdmin(admin: Admin) {
     if (confirm('¿Estás seguro de que quieres eliminar este administrador?')) {
       this.adminService.deleteAdmin(id).subscribe({
         next: () => {
-          this.admins = this.admins.filter(admin => admin.id !== id);
+          this.admins = this.admins.filter(admin => admin.adm_id !== id);
           this.showSuccess('Administrador eliminado exitosamente');
         },
         error: (error) => {
@@ -157,7 +159,7 @@ updateAdmin(admin: Admin) {
 @Component({
   selector: 'app-admin-dialog',
   template: `
-    <h1 mat-dialog-title>{{data.id ? 'Editar' : 'Crear'}} Administrador</h1>
+    <h1 mat-dialog-title>{{data.adm_id ? 'Editar' : 'Crear'}} Administrador</h1>
     <div mat-dialog-content>
       <div class="form-row">
         <mat-form-field appearance="fill">
@@ -185,8 +187,18 @@ updateAdmin(admin: Admin) {
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>ID del Rol</mat-label>
-        <input matInput [(ngModel)]="data.usuario_id" type="number" required>
+        <input matInput [(ngModel)]="data.adm_rol_id" type="number" required>
       </mat-form-field>
+
+      <mat-form-field appearance="fill">
+    <mat-label>Estado</mat-label>
+    <mat-select [(ngModel)]="data.Estado" required>
+      <mat-option [value]="'A'">Activo</mat-option>
+      <mat-option [value]="'I'">Inactivo</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+     
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancelar</button>
@@ -214,7 +226,9 @@ updateAdmin(admin: Admin) {
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatSelect,
+    MatOption
   ]
 })
 export class AdminDialogComponent {

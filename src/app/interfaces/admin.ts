@@ -1,4 +1,4 @@
-export interface Admin1 {
+export interface Admin {
   adm_id?: number;
   adm_nombre: string;
   adm_apellido: string;
@@ -6,9 +6,10 @@ export interface Admin1 {
   adm_telefono: string;
   adm_email: string;
   adm_rol_id: number;
+  Estado: string
 }
-
-export interface Admin {
+/* 
+export interface Admin1 {
   id: number;
   adm_nombre: string;
   adm_apellido: string;
@@ -18,4 +19,4 @@ export interface Admin {
   usuario_id: number;
   created_at: string;
   updated_at: string;
-}
+} */
